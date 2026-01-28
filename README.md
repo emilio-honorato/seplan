@@ -80,6 +80,13 @@ resources/
 routes/
  └── web.php
 
+---------------------------------
+Funcionalidades:
 
+- CRUD de Veículos
+- Validações com Form Requests
+- Soft Delete
+- Relatório de estoque agrupado por marca
+- Página de relatório preparada para impressão
 
 
