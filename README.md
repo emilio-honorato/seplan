@@ -31,6 +31,55 @@ Antes de iniciar, é necessário ter instalado:
 
 ## 🚀 Instalação com Docker (Laravel Sail)
 
-Clonar o repositório
-git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
+---------------------------------
+1 - Clonar o repositório
+git clone https://github.com/emilio-honorato/seplan.git
+
+---------------------------------
+2 - Criar o arquivo de ambiente
+cp .env.example .env
+
+---------------------------------
+3 - Subir os containers
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install
+
+./vendor/bin/sail up -d
+
+---------------------------------
+4- Gerar a chave da aplicação
+./vendor/bin/sail artisan key:generate
+
+---------------------------------
+5 - Executar migrations e seeders
+./vendor/bin/sail artisan migrate --seed
+
+---------------------------------
+6 - Instalar dependências front-end
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run build
+
+./vendor/bin/sail npm run dev -> para ambiente dev
+
+
+---------------------------------
+Estrutura de Pastas:
+app/
+ ├── Http/Controllers
+ ├── Http/Requests
+ ├── Models
+database/
+ ├── migrations
+ ├── seeders
+resources/
+ ├── views
+routes/
+ └── web.php
+
+
+
 
